@@ -1,1 +1,3 @@
-*.exe\n*.o\n.vscode/
+*.exe
+*.o
+.vscode/
