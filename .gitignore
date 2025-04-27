@@ -1,3 +1,5 @@
 *.exe
 *.o
 .vscode/
+test_exec
+Main
