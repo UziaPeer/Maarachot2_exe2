@@ -21,4 +21,4 @@ valgrind: Main
 clean:
 	rm -f Main test_exec
 
-.PHONY: all test valgrind clean
+.PHONY: all Main test test_exec valgrind clean
