@@ -15,7 +15,9 @@ Id: 318410263
 
 ## מבנה התיקיות
 
----
+![image](https://github.com/user-attachments/assets/7a5a3299-106a-44b9-a6bf-83e0837a567d)
+
+
 
 ## פונקציות עיקריות
 
