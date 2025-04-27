@@ -1,3 +1,4 @@
+# Email: peeruzia@gmail.com
 CXX = g++
 CXXFLAGS = -Iinclude -std=c++11
 

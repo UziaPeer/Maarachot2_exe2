@@ -1,3 +1,4 @@
+// Email: peeruzia@gmail.com
 #include "Queue.hpp"
 
 namespace ds {

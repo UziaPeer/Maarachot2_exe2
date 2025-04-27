@@ -1,3 +1,4 @@
+// Email: peeruzia@gmail.com
 #include <iostream>
 #include "SquareMat.hpp"
 #include "Queue.hpp"

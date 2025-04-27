@@ -1,3 +1,4 @@
+// Email: peeruzia@gmail.com
 #ifndef QUEUE_HPP
 #define QUEUE_HPP
 

@@ -1,3 +1,4 @@
+// Email: peeruzia@gmail.com
 #include "SquareMat.hpp"
 
 namespace mat
