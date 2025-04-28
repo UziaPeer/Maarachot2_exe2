@@ -188,3 +188,33 @@ TEST_CASE("בדיקות בסיסיות לתור") {
     CHECK(q.isEmpty());
 }
 
+TEST_CASE("בדיקת בנאי העתקה ואופרטור השמה ב-Queue") {
+    Queue q1(5);
+    q1.enqueue(10);
+    q1.enqueue(20);
+    q1.enqueue(30);
+
+    // בדיקת בנאי העתקה
+    Queue q2(q1); // כאן אמור לפעול copy constructor
+    CHECK(q2.dequeue() == 10);
+    CHECK(q2.dequeue() == 20);
+    CHECK(q2.dequeue() == 30);
+    CHECK(q2.isEmpty());
+
+    // בדיקת השמה
+    Queue q3(5);
+    q3 = q1; // כאן אמור לפעול operator=
+    CHECK(q3.dequeue() == 10);
+    CHECK(q3.dequeue() == 20);
+    CHECK(q3.dequeue() == 30);
+    CHECK(q3.isEmpty());
+
+    // בדיקת השמה עצמית לא עושה בעיות
+    q1 = q1;
+    CHECK(q1.dequeue() == 10);
+    CHECK(q1.dequeue() == 20);
+    CHECK(q1.dequeue() == 30);
+    CHECK(q1.isEmpty());
+}
+
+

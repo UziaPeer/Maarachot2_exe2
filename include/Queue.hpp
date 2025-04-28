@@ -12,6 +12,9 @@ private:
 public:
     Queue(int size);
     ~Queue();
+    Queue(const Queue& other);            // בנאי העתקה
+    Queue& operator=(const Queue& other); // אופרטור השמה
+
 
     void enqueue(int value);
     int dequeue();
