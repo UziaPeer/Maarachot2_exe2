@@ -58,6 +58,7 @@ Id: 318410263
 - בנאי העתקה (`SquareMat(const SquareMat& other)`),
 - אופרטור השמה (`SquareMat& operator=(const SquareMat& other)`),
 - מפרק (`~SquareMat()`).
+
 אותו הדבר נכון גם במחלקת `Queue` וגם שם מימשתי את הכלל.
 
 
