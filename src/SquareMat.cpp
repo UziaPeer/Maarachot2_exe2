@@ -4,6 +4,7 @@
 namespace mat
 {
 
+    // בנאי רגיל: יוצר מטריצה ריבועית מאופסת בגודל n
     SquareMat::SquareMat(int n) : size(n)
     {
         data = new double[size * size];
@@ -13,6 +14,7 @@ namespace mat
         }
     }
 
+    // בנאי העתקה: יוצר עותק חדש ממטריצה קיימת
     SquareMat::SquareMat(const SquareMat &other) : size(other.size)
     {
         data = new double[size * size];
@@ -22,9 +24,10 @@ namespace mat
         }
     }
 
+    // אופרטור השמה: השמת ערכים ממטריצה אחרת
     SquareMat &SquareMat::operator=(const SquareMat &other)
     {
-        if (this != &other)
+        if (this != &other) // הגנה מהשמה עצמית
         {
             delete[] data;
             size = other.size;
@@ -37,31 +40,37 @@ namespace mat
         return *this;
     }
 
+    // מפרק: משחרר את הזיכרון הדינמי
     SquareMat::~SquareMat()
     {
         delete[] data;
     }
 
+    // פונקציה להחזרת ערך של איבר במטריצה (לקריאה בלבד)
     double SquareMat::get(int i, int j) const
     {
         return data[i * size + j];
     }
 
+    // פונקציה להצבת ערך באיבר במטריצה
     void SquareMat::set(int i, int j, double val)
     {
         data[i * size + j] = val;
     }
 
+    // אופרטור גישה: מאפשר שימוש ב-matrix[row][col]
     SquareMat::RowProxy SquareMat::operator[](int row)
     {
         return RowProxy(&data[row * size]);
     }
 
+    // אופרטור גישה קבוע: מאפשר קריאה בלבד ב-matrix[row][col]
     const SquareMat::RowProxy SquareMat::operator[](int row) const
     {
         return RowProxy(&data[row * size]);
     }
 
+    // אופרטור חיבור מטריצות
     SquareMat SquareMat::operator+(const SquareMat &other) const
     {
         SquareMat result(size);
@@ -72,6 +81,7 @@ namespace mat
         return result;
     }
 
+    // אופרטור חיסור מטריצות
     SquareMat SquareMat::operator-(const SquareMat &other) const
     {
         SquareMat result(size);
@@ -82,6 +92,7 @@ namespace mat
         return result;
     }
 
+    // אופרטור שינוי סימן לכל איבר במטריצה
     SquareMat SquareMat::operator-() const
     {
         SquareMat result(size);
@@ -92,6 +103,7 @@ namespace mat
         return result;
     }
 
+    // אופרטור טרנספוז: מחליף בין שורות לעמודות
     SquareMat SquareMat::operator~() const
     {
         SquareMat result(size);
@@ -101,6 +113,7 @@ namespace mat
         return result;
     }
 
+    // אופרטור += בין מטריצות
     SquareMat &SquareMat::operator+=(const SquareMat &other)
     {
         for (int i = 0; i < size * size; ++i)
@@ -110,6 +123,7 @@ namespace mat
         return *this;
     }
 
+    // אופרטור -= בין מטריצות
     SquareMat &SquareMat::operator-=(const SquareMat &other)
     {
         for (int i = 0; i < size * size; ++i)
@@ -119,6 +133,7 @@ namespace mat
         return *this;
     }
 
+    // אופרטור כפל מטריצה בסקלר
     SquareMat SquareMat::operator*(double scalar) const
     {
         SquareMat result(size);
@@ -129,11 +144,13 @@ namespace mat
         return result;
     }
 
+    // כפל סקלר * מטריצה (חבר חיצוני)
     SquareMat operator*(double scalar, const SquareMat &mat)
     {
         return mat * scalar;
     }
 
+    // אופרטור כפל מטריצות (כפל שורה בעמודה)
     SquareMat SquareMat::operator*(const SquareMat &other) const
     {
         SquareMat result(size);
@@ -152,6 +169,7 @@ namespace mat
         return result;
     }
 
+    // אופרטור == להשוואת מטריצות
     bool SquareMat::operator==(const SquareMat &other) const
     {
         if (size != other.size)
@@ -164,11 +182,13 @@ namespace mat
         return true;
     }
 
+    // אופרטור != אי-שוויון בין מטריצות
     bool SquareMat::operator!=(const SquareMat &other) const
     {
         return !(*this == other);
     }
 
+    // אופרטור < השוואת סכומי איברים
     bool SquareMat::operator<(const SquareMat &other) const
     {
         double sum1 = 0, sum2 = 0;
@@ -180,21 +200,25 @@ namespace mat
         return sum1 < sum2;
     }
 
+    // אופרטור <=
     bool SquareMat::operator<=(const SquareMat &other) const
     {
         return !(other < *this);
     }
 
+    // אופרטור >
     bool SquareMat::operator>(const SquareMat &other) const
     {
         return other < *this;
     }
 
+    // אופרטור >=
     bool SquareMat::operator>=(const SquareMat &other) const
     {
         return !(*this < other);
     }
 
+    // קדם-אינקרמנט ++ על כל איבר במטריצה
     SquareMat &SquareMat::operator++()
     {
         for (int i = 0; i < size * size; ++i)
@@ -202,6 +226,7 @@ namespace mat
         return *this;
     }
 
+    // פוסט-אינקרמנט ++
     SquareMat SquareMat::operator++(int)
     {
         SquareMat temp(*this);
@@ -209,6 +234,7 @@ namespace mat
         return temp;
     }
 
+    // קדם-דקרמנט -- על כל איבר
     SquareMat &SquareMat::operator--()
     {
         for (int i = 0; i < size * size; ++i)
@@ -216,6 +242,7 @@ namespace mat
         return *this;
     }
 
+    // פוסט-דקרמנט --
     SquareMat SquareMat::operator--(int)
     {
         SquareMat temp(*this);
@@ -223,11 +250,13 @@ namespace mat
         return temp;
     }
 
+    // אופרטור ! מחשב דטרמיננטה
     double SquareMat::operator!() const
     {
         return this->determinant();
     }
 
+    // חישוב דטרמיננטה ע"י הרחבת לפיתוח מינור
     double SquareMat::determinant() const
     {
         if (size == 1)
@@ -255,11 +284,12 @@ namespace mat
         return det;
     }
 
+    // אופרטור חזקת מטריצה
     SquareMat SquareMat::operator^(int power) const
     {
         SquareMat result(size);
         for (int i = 0; i < size; ++i)
-            result.set(i, i, 1); // identity
+            result.set(i, i, 1); // התחלה כמטריצת זהות
         SquareMat base = *this;
         while (power > 0)
         {
@@ -271,6 +301,7 @@ namespace mat
         return result;
     }
 
+    // אופרטור הדפסה של מטריצה
     std::ostream &operator<<(std::ostream &os, const SquareMat &mat)
     {
         for (int i = 0; i < mat.size; ++i)
@@ -286,16 +317,18 @@ namespace mat
         return os;
     }
 
+    // אופרטור % כפל איברי מטריצות
     SquareMat SquareMat::operator%(const SquareMat &other) const
     {
         SquareMat result(size);
         for (int i = 0; i < size * size; ++i)
         {
-            result.data[i] = this->data[i] * other.data[i]; // כפל איברי
+            result.data[i] = this->data[i] * other.data[i];
         }
         return result;
     }
 
+    // אופרטור % מודולו של כל איבר בסקלר
     SquareMat SquareMat::operator%(int scalar) const
     {
         SquareMat result(size);
@@ -306,6 +339,7 @@ namespace mat
         return result;
     }
 
+    // אופרטור חלוקה בסקלר
     SquareMat SquareMat::operator/(double scalar) const
     {
         SquareMat result(size);
@@ -316,6 +350,7 @@ namespace mat
         return result;
     }
 
+    // אופרטור %= בין מטריצות
     SquareMat &SquareMat::operator%=(const SquareMat &other)
     {
         for (int i = 0; i < size * size; ++i)
@@ -325,6 +360,7 @@ namespace mat
         return *this;
     }
 
+    // אופרטור %= מול סקלר
     SquareMat &SquareMat::operator%=(int scalar)
     {
         for (int i = 0; i < size * size; ++i)
@@ -334,6 +370,7 @@ namespace mat
         return *this;
     }
 
+    // אופרטור /= חלוקה בסקלר
     SquareMat &SquareMat::operator/=(double scalar)
     {
         for (int i = 0; i < size * size; ++i)
@@ -343,6 +380,7 @@ namespace mat
         return *this;
     }
 
+    // אופרטור *= כפל בסקלר
     SquareMat& SquareMat::operator*=(double scalar) {
         for (int i = 0; i < size * size; ++i) {
             data[i] *= scalar;
@@ -350,10 +388,10 @@ namespace mat
         return *this;
     }
     
+    // אופרטור *= כפל במטריצה אחרת
     SquareMat& SquareMat::operator*=(const SquareMat& other) {
         *this = *this * other;
         return *this;
     }
-    
 
 }
