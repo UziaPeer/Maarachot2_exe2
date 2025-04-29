@@ -52,7 +52,7 @@ namespace mat
         SquareMat &operator+=(const SquareMat &other); // חיבור במקום: מחבר מטריצה אחרת למטריצה הנוכחית
         SquareMat &operator-=(const SquareMat &other); // חיסור במקום: מחסר מטריצה אחרת מהמטריצה הנוכחית
         SquareMat operator*(double scalar) const; // כפל בסקלר: מחזיר מטריצה חדשה לאחר כפל בסקלר
-        friend SquareMat operator*(double scalar, const SquareMat &mat); // כפל בסקלר (חבר): מחזיר מטריצה חדשה לאחר כפל בסקלר
+        friend SquareMat operator*(double scalar, const SquareMat &mat); // כפל בסקלר (פונקציה חברה): מחזיר מטריצה חדשה לאחר כפל בסקלר
         bool operator==(const SquareMat &other) const; // השוואה: בודק אם שתי מטריצות שוות
         bool operator!=(const SquareMat &other) const; // אי-שוויון: בודק אם שתי מטריצות אינן שוות
         bool operator<(const SquareMat &other) const; // השוואה: בודק אם מטריצה אחת קטנה מהשנייה
@@ -69,7 +69,7 @@ namespace mat
         double operator!() const; // אופרטור לחישוב דטרמיננטה (!)
         SquareMat operator^(int power) const; // העלאה בחזקה: מעלה את המטריצה לחזקה נתונה
 
-        friend std::ostream &operator<<(std::ostream &os, const SquareMat &mat); // הדפסת מטריצה לזרם פלט
+        friend std::ostream &operator<<(std::ostream &os, const SquareMat &mat); // הדפסת מטריצה  
     };
 
 }
